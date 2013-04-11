@@ -7,58 +7,59 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <body>
+    <form>
+        <div id="weightWrap" class="wrap">
+            <label for="weight">How much do you weigh?</label><br />
+            <input type="text" id="weight" name="weight" />
+            <input type="radio" name="weightUnit" checked="true" value="kg">kg</input>
+            <input type="radio" name="weightUnit" value="lbs">lbs</input>
+        </div>
 
-    <div id="weightWrap" class="wrap">
-        <label for="weight">How much do you weigh?</label><br />
-        <input type="text" id="weight" name="weight" />
-        <input type="radio" name="weightUnit" checked="true" value="kg">kg</input>
-        <input type="radio" name="weightUnit" value="lbs">lbs</input>
-    </div>
+        <div id="heightWrap" class="wrap">
+            <label for="height">How tall are you?</label><br/>
+            <input type="text" id="height" name="height" />
+            <input type="radio" name="heightUnit" checked="true" value="m">m</input>
+            <input type="radio" name="heightUnit" value="in">in</input>
+        </div>
 
-    <div id="heightWrap" class="wrap">
-        <label for="height">How tall are you?</label><br/>
-        <input type="text" id="height" name="height" />
-        <input type="radio" name="heightUnit" checked="true" value="m">m</input>
-        <input type="radio" name="heightUnit" value="in">in</input>
-    </div>
+        <div id="genderWrap" class="wrap">
+            <label for="gender">What gender are you?</label><br />
+            <input type="radio" name="gender" value="M">Male</input>
+            <input type="radio" name="gender" value="F">Female</input>
+        </div>
 
-    <div id="genderWrap" class="wrap">
-        <label for="gender">What gender are you?</label><br />
-        <input type="radio" name="gender" value="M">Male</input>
-        <input type="radio" name="gender" value="F">Female</input>
-    </div>
+        <div id="raceWrap" class="wrap">
+            <label for="race">What is your race/ethnicity?</label><br/>
+            <select name="race" id="race">
+                <option value="white">Non-Hispanic White</option>
+                <option value="black">Non-Hispanic Black</option>
+                <option value="hispanic">Hispanic</option>
+            </select>
+        </div>
 
-    <div id="raceWrap" class="wrap">
-        <label for="race">What is your race/ethnicity?</label><br/>
-        <select name="race" id="race">
-            <option value="white">Non-Hispanic White</option>
-            <option value="black">Non-Hispanic Black</option>
-            <option value="hispanic">Hispanic</option>
-        </select>
-    </div>
+        <div id="trigylcerideWrap" class="wrap">
+            <label for="triglyceride">What is your fasting trigylceride?</label><br/>
+            <input type="text" name="triglyceride" id="triglyceride"/>
+        </div>
 
-    <div id="trigylcerideWrap" class="wrap">
-        <label for="triglyceride">What is your fasting trigylceride?</label><br/>
-        <input type="text" name="triglyceride" id="triglyceride"/>
-    </div>
+        <div id="hdlWrap" class="wrap">
+            <label for="hdl">What is your HDL?</label><br/>
+            <input type="text" name="hdl" id="hdl"/>
+        </div>
 
-    <div id="hdlWrap" class="wrap">
-        <label for="hdl">What is your HDL?</label><br/>
-        <input type="text" name="hdl" id="hdl"/>
-    </div>
+        <div id="sbpWrap" class="wrap">
+            <label for="sbp">What is your SBP?</label><br/>
+            <input type="text" name="sbp" id="sbp"/>
+        </div>
 
-    <div id="sbpWrap" class="wrap">
-        <label for="sbp">What is your SBP?</label><br/>
-        <input type="text" name="sbp" id="sbp"/>
-    </div>
+        <div id="glucoseWrap" class="wrap">
+            <label for="glucose">What is your fasting glucose?</label><br/>
+            <input type="text" name="glucose" id="glucose"/>
+        </div>
 
-    <div id="glucoseWrap" class="wrap">
-        <label for="glucose">What is your fasting glucose?</label><br/>
-        <input type="text" name="glucose" id="glucose"/>
-    </div>
-
-    <button id="calculate">Calculate</button>
-
+        <button id="calculate">Calculate</button>
+    </form>
+    
     <div id="result"></div>
 
     <script type="text/javascript" src='lib/main.js'></script>
