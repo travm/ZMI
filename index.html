@@ -22,10 +22,15 @@
             <input type="radio" name="heightUnit" value="in">in</input>
         </div>
 
+        <div id="ageWrap" class="wrap">
+            <label for="age">How old are you?</label><br />
+            <input type="text" id="age" name="age" />
+        </div>
+
         <div id="genderWrap" class="wrap">
             <label for="gender">What gender are you?</label><br />
-            <input type="radio" name="gender" value="M">Male</input>
-            <input type="radio" name="gender" value="F">Female</input>
+            <input type="radio" name="gender" value="M" class="gender" checked>Male</input>
+            <input type="radio" name="gender" value="F" class="gender">Female</input>
         </div>
 
         <div id="raceWrap" class="wrap">
@@ -65,5 +70,7 @@
     <script type="text/javascript" src='lib/main.js'></script>
     <script type="text/javascript" src='lib/bmi.js'></script>
     <script type="text/javascript" src='lib/process-csv.js'></script>
+    <script type="text/javascript" src='lib/z-score.js'></script>
+    <script type="text/javascript" src='lib/mets-score.js'></script>
 </body>
 </html>
