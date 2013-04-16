@@ -1,0 +1,16 @@
+Simple Number Validation
+<input data-val="true" data-val-number="The field TimeLimit must be a number." data-val-required="TimeLimit is required" id="TimeLimit" name="TimeLimit" size="3" type="text" data-val-range="Age must be between 2 and 20 years" data-val-range-max="230" data-val-range-min="24" value="">
+
+<span class="field-validation-valid" data-valmsg-for="TimeLimit" data-valmsg-replace="true"></span>
+
+
+Standard Text/Character Validation
+<input data-val="true" data-val-length="The field Exam Title must be a string with a maximum length of 75." data-val-length-max="75" data-val-regex="Title must contain standard characters only." data-val-regex-pattern="^[-\w\s&quot;'=!@#%,:;\.\$\{\[\(\|\)\]\}\*\+\?/\\]*$" data-val-required="The Exam Title field is required." id="InstanceTitle" name="InstanceTitle" style="width:200px;" type="text" value="" class="valid">
+
+<span class="field-validation-valid" data-valmsg-for="InstanceTitle" data-valmsg-replace="true"></span>
+
+
+Date Validation
+<input class="text-box single-line hasDatepicker" data-val="true" data-val-date="The field CalendarEffectiveDate must be a date." id="CalendarEffectiveDate" name="CalendarEffectiveDate" type="datetime" value="">
+
+<span class="field-validation-valid" data-valmsg-for="CalendarEffectiveDate" data-valmsg-replace="true"></span>

@@ -4,3 +4,10 @@ input {padding:5px; border:none;}
 .wrap {margin:0 0 20px 0;}
 
 #result {margin:20px 0px; padding:10px;}
+
+/* Validation */
+.field-validation-error {color:#f00;}
+.field-validation-valid {display:none;}
+.input-validation-error {border:1px solid #f00; background-color:#fee;}
+.validation-summary-errors {font-weight:bold; color:#f00;}
+.validation-summary-valid {display:none;}
