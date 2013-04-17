@@ -20,7 +20,7 @@ $(function(){
             var heightUnit = $('input[name=heightUnit]:checked').val();
             var age = $('#age').val() * 12;
             var gender = $('input[name=gender]:checked').val();
-            var race = $('input[name=race]:selected').val();
+            var race = $('#race').val();
             var tri = $('#triglyceride');
             var hdl = $('#hdl');
             var sbp = $('#sbp');
@@ -33,9 +33,9 @@ $(function(){
             var zScore = calculateZscore(age, gender, bmi);
 
             // Store MetS Score for Output
-            //var metsScore =  calculateMets(gender, race, zScore, tri, hdl, spb, glu)
+            var metsScore =  calculateMets(gender, race, zScore, tri, hdl, sbp, glu);
 
-            $('#result').text(bmi);
+            $('#result').text(metsScore);
 
         }
     });

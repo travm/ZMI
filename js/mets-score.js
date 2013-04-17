@@ -1,4 +1,4 @@
-function calculateMets(race, zscore, tri, hdl, sbp, glu) {
+function calculateMets(gender, race, zScore, tri, hdl, sbp, glu) {
 
 // LOG
     // Log all data to the console for reference
@@ -20,7 +20,7 @@ function calculateMets(race, zscore, tri, hdl, sbp, glu) {
     // B8 = Fasting Glucose
     
     var metsScore;
-    var metsPercent;
+    var metsPercentage;
 
     if(gender == "M") {
 
@@ -54,8 +54,12 @@ function calculateMets(race, zscore, tri, hdl, sbp, glu) {
             metsScore = -4.7637 + 0.352 * zScore - 0.0263 * hdl + 0.0152 * sbp + 0.691 * Math.log(tri) + 0.0133 * glu;
         }
 
-    }
+    } else {
 
-    console.log(metsScore);
+        console.log('Gender was not set.')
+
+    }
     
+    console.log(metsScore);
+    return metsScore;
 }

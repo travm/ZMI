@@ -11,7 +11,7 @@ function calculateZscore(age, gender, bmi) {
         success: function(data) { popData = processCSV(data); }
     });
 
-    // Log all data to the console for reference
+    // LOG DATA TO CONSOLE FOR REFERENCE
     console.log("// Calculate Z-Score Function");
     console.log("Age: " + age + " (Months)");
     console.log("Gender: " + gender);

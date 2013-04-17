@@ -1,3 +1,19 @@
+// EXAMPLE DATA
+Age: 19
+Sex: Male
+Weight: 140lbs (63.502931799964735kg)
+Height: (1.8034m)
+BMI: 19.5258363716381
+L: -1.83665586
+M: 22.45257182
+S: 0.132484631
+
+
+0.29242402316825142043659980812292 / -0.24332867388608766 
+= -1.2017655728693419377840651139867
+
+
+// JQUERY VALIDATE EXAMPLES
 Simple Number Validation
 <input data-val="true" data-val-number="The field TimeLimit must be a number." data-val-required="TimeLimit is required" id="TimeLimit" name="TimeLimit" size="3" type="text" data-val-range="Age must be between 2 and 20 years" data-val-range-max="230" data-val-range-min="24" value="">
 
