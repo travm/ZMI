@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>ZMI - A JavaScript BMI Z-Score &amp; MetS Score Calculator</title>
-    <link rel="stylesheet" type="text/css" href="normalize.css">
+    <link rel="stylesheet" type="text/css" href="reset.css">
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,900' rel='stylesheet' type='text/css'>
@@ -55,38 +55,41 @@
                 </div>
 
                 <div id="trigylcerideWrap" class="wrap">
-                    <label for="triglyceride">What is your fasting trigylceride?</label><br/>
+                    <label for="triglyceride">Fasting trigylceride?</label><br/>
                     <input type="text" data-val="true" data-val-number="Your triglyceride count must be a number." data-val-required="Triglyceride count is required." name="triglyceride" id="triglyceride"/><br />
                     <span class="field-validation-valid" data-valmsg-for="triglyceride" data-valmsg-replace="true"></span>
                 </div>
 
                 <div id="hdlWrap" class="wrap">
-                    <label for="hdl">What is your HDL?</label><br/>
+                    <label for="hdl">HDL?</label><br/>
                     <input type="text" data-val="true" data-val-number="Your HDL count must be a number." data-val-required="HDL count is required." name="hdl" id="hdl"/><br />
                     <span class="field-validation-valid" data-valmsg-for="hdl" data-valmsg-replace="true"></span>
                 </div>
 
                 <div id="sbpWrap" class="wrap">
-                    <label for="sbp">What is your SBP?</label><br/>
+                    <label for="sbp">SBP?</label><br/>
                     <input type="text" data-val="true" data-val-number="Your SBP count must be a number." data-val-required="SBP count is required." name="sbp" id="sbp"/><br />
                     <span class="field-validation-valid" data-valmsg-for="sbp" data-valmsg-replace="true"></span>
                 </div>
 
                 <div id="glucoseWrap" class="wrap">
-                    <label for="glucose">What is your fasting glucose?</label><br/>
+                    <label for="glucose">Fasting glucose?</label><br/>
                     <input type="text" data-val="true" data-val-number="Your glucose count must be a number." data-val-required="Glucose count is required." name="glucose" id="glucose"/><br />
                     <span class="field-validation-valid" data-valmsg-for="glucose" data-valmsg-replace="true"></span>
                 </div>
 
-                <button id="calculate">Calculate</button>
+                <div id="calculateWrap">
+                    <button id="calculate">Calculate</button>
+                    <div id="result">Results will be here.</div>
+                </div>
 
             </form>
             
-            <div id="result">Results will be here.</div>
+            
             <div id="credits">Created by <a href="http://twitter.com/travismaynard">@travismaynard</a> for the WVU School of Public Health.</div>
 
-        </div>
-    </div>
+        </section>
+    </article>
 
     <script type="text/javascript" src='js/main.js'></script>
     <script type="text/javascript" src='js/bmi.js'></script>

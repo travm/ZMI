@@ -1,20 +1,38 @@
-body {font: 16px normal "Raleway", Sans-Serif; padding:10px; background:#3360E8;}
-input {padding:5px; border:1px solid #D5DAE8;}
+/* GLOBALS */
+body {font:400 16px "Raleway", Sans-Serif; padding:10px; background:#3360E8;}
+input[type="text"] {padding:5px; border:1px solid #D5DAE8;}
+input[type="radio"] {display:inline;}
 
-#container {width:500px; margin:0 auto;}
+/* PAGE LAYOUT */
+#container {width:500px; margin:0 auto; overflow:hidden;}
 header {color:#fff; overflow:hidden;}
-#title {font-size:5em; line-height:1; text-shadow:2px 2px 0px #2343A1; margin:0; float:left;}
-#subtitle {font-size:0.8em; text-shadow:2px 2px 0px #2343A1; padding:20px; float:right;} 
-form {padding:40px; background:#fff; border-radius:8px; box-shadow:0 0 30px #2343A1;}
-.wrap {margin:0 0 20px 0;}
+#title {font-size:5em; font-weight:900; line-height:1; text-shadow:2px 2px 0px #2343A1; margin:0; float:left;}
+#subtitle {font-size:0.8em; text-shadow:2px 2px 0px #2343A1; padding:30px 0; float:right;} 
+form {padding:40px; background:#fff; border-radius:8px; box-shadow:0 0 30px #2343A1; overflow:hidden;}
+.wrap {margin:0 0 10px 0;}
 
-#result {margin:20px 0px; padding:10px;}
-#credits {color:#A0B2E8; text-align:center;}
+/* FORM LAYOUT */
+#weightWrap {}
+#heightWrap {}
+#ageWrap {}
+#genderWrap {}
+#raceWrap {}
+#triglycerideWrap {}
+#hdlWrap {}
+#sbpWrap {}
+#glucoseWrap {}
+
+#calculateWrap {padding:20px; background:#eee; border-radius:6px; overflow:hidden;}
+#calculateWrap button {float:left;}
+#result {float:right;}
+
+/* FOOTER LAYOUT */
+#credits {color:#A0B2E8; text-align:center; margin:20px 0 40px 0;}
 #credits a {color:#fff;}
 
-/* Validation */
-.field-validation-error {color:#f00;}
+/* VALIDATION */
+.field-validation-error {color:#f00; margin:10px 0 0 0; padding:10px; background:#FCF0AD; display:block;}
 .field-validation-valid {display:none;}
-.input-validation-error {border:1px solid #f00; background-color:#fee;}
+.input-validation-error {border:0px solid #f00; background:#fee;}
 .validation-summary-errors {font-weight:bold; color:#f00; display:block;}
 .validation-summary-valid {display:none;}

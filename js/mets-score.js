@@ -60,6 +60,6 @@ function calculateMets(gender, race, zScore, tri, hdl, sbp, glu) {
 
     }
     
-    console.log(metsScore);
+    console.log("MetS Score: " + metsScore);
     return metsScore;
 }

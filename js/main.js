@@ -14,17 +14,17 @@ $(function(){
         if($form.valid()) {
     
             // Store Form Elements
-            var weight = document.getElementById('weight').value;
-            var height = document.getElementById('height').value;
+            var weight = $('#weight').val();
+            var height = $('#height').val();
             var weightUnit = $('input[name=weightUnit]:checked').val();
             var heightUnit = $('input[name=heightUnit]:checked').val();
             var age = $('#age').val() * 12;
             var gender = $('input[name=gender]:checked').val();
             var race = $('#race').val();
-            var tri = $('#triglyceride');
-            var hdl = $('#hdl');
-            var sbp = $('#sbp');
-            var glu = $('#glucose');
+            var tri = $('#triglyceride').val();
+            var hdl = $('#hdl').val();
+            var sbp = $('#sbp').val();
+            var glu = $('#glucose').val();
 
             // Store BMI in a variable for BMI Z-Score calculation
             var bmi = calculateBMI(weight, weightUnit, height, heightUnit);
@@ -35,7 +35,7 @@ $(function(){
             // Store MetS Score for Output
             var metsScore =  calculateMets(gender, race, zScore, tri, hdl, sbp, glu);
 
-            $('#result').text(metsScore);
+            result.text("MetS Score: " + metsScore);
 
         }
     });
