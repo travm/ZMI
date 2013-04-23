@@ -1,6 +1,6 @@
 function calculateZscore(age, gender, bmi) {
 
-    // PULL & PROCESSES CSV DATA FILE (.TXT)
+    // Pull & process CSV data file (.TXT)
     var popData = "Oh no! Population data wasn't loaded properly.";
 
     $.ajax({
@@ -11,7 +11,7 @@ function calculateZscore(age, gender, bmi) {
         success: function(data) { popData = processCSV(data); }
     });
 
-    // LOG DATA TO CONSOLE FOR REFERENCE
+    // Log data to console for reference
     console.log("// Calculate Z-Score Function");
     console.log("Age: " + age + " (Months)");
     console.log("Gender: " + gender);
@@ -22,9 +22,11 @@ function calculateZscore(age, gender, bmi) {
     }
     
 
-    // Loop Through Data, Perform Calculation
-    // If L != 0 then use: Z = ((X/M)**L) - 1 / LS
-    // If L = 0 then use: Z = ln(X/M)/S (Not currently needed.)
+    /*
+     * Loop Through Data, Perform Calculation
+     * If L != 0 then use: Z = ((X/M)**L) - 1 / LS
+     * If L = 0 then use: Z = ln(X/M)/S (Not currently needed.)
+     */
     if(gender == "M") {
 
         for(var i = 0; i < popData.length; i++) {       

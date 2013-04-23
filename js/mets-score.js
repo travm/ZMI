@@ -1,6 +1,5 @@
 function calculateMets(gender, race, zScore, tri, hdl, sbp, glu) {
 
-// LOG
     // Log all data to the console for reference
     console.log("// Calculate MetS Score Function");
     console.log("Race: " + race);
@@ -11,17 +10,11 @@ function calculateMets(gender, race, zScore, tri, hdl, sbp, glu) {
         console.log("Effective Age: " + age);
     }
 
-
-// LEGEND (For Variable Creation)
-    // B4 = BMI Z-Score
-    // B5 = Fasting Triglyceride
-    // B6 = HDL
-    // B7 = SBP
-    // B8 = Fasting Glucose
-    
+    // Initialize variables
     var metsScore;
     var metsPercentage;
 
+    // Determine gender and race and insert variables into the correct formula
     if(gender == "M") {
 
         if(race == "white") {

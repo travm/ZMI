@@ -19,8 +19,7 @@ function findUnit(unit) {
     return output;
 }
 
-// RENDER SELECTED UNIT
-
+// Calculate BMI after inputs have been converted
 function calculateBMI(weight, weightUnit, height, heightUnit) {
     
     // Log BMI data to the console for reference
@@ -28,7 +27,7 @@ function calculateBMI(weight, weightUnit, height, heightUnit) {
     console.log("Weight: " + weight + weightUnit);
     console.log("Height: " + height + heightUnit);
 
-    // Init Variables
+    // Initialize variables
     var w;
     var h;
     
@@ -58,7 +57,6 @@ function calculateBMI(weight, weightUnit, height, heightUnit) {
     } else {
         return result;
     }
-
 
 }
 

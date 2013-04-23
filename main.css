@@ -22,8 +22,8 @@ form {padding:40px; background:#fff; border-radius:8px; box-shadow:0 0 30px #234
 #sbpWrap {}
 #glucoseWrap {}
 
-#calculateWrap {padding:20px; background:#eee; border-radius:6px; overflow:hidden;}
-#calculateWrap button {float:left;}
+#calculateWrap {padding:10px; background:#eee; border-radius:6px; overflow:hidden;}
+#calculateWrap button {font-size:1em; margin:0; padding:2px 6px; float:left;}
 #result {float:right;}
 
 /* FOOTER LAYOUT */
@@ -31,7 +31,7 @@ form {padding:40px; background:#fff; border-radius:8px; box-shadow:0 0 30px #234
 #credits a {color:#fff;}
 
 /* VALIDATION */
-.field-validation-error {color:#f00; margin:10px 0 0 0; padding:10px; background:#FCF0AD; display:block;}
+.field-validation-error {text-align:center; margin:10px 0 0 0; padding:10px; background:#FCF0AD; border-radius:3px; display:block;}
 .field-validation-valid {display:none;}
 .input-validation-error {border:0px solid #f00; background:#fee;}
 .validation-summary-errors {font-weight:bold; color:#f00; display:block;}
