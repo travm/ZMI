@@ -18,7 +18,7 @@ $(function(){
             var height = $('#height').val();
             var weightUnit = $('input[name=weightUnit]:checked').val();
             var heightUnit = $('input[name=heightUnit]:checked').val();
-            var age = $('#age').val() * 12;
+            var age = $('#age').val();
             var gender = $('input[name=gender]:checked').val();
             var race = $('#race').val();
             var tri = $('#triglyceride').val();

@@ -5,10 +5,6 @@ function calculateMets(gender, race, zScore, tri, hdl, sbp, glu) {
     console.log("Race: " + race);
     console.log("Gender: " + gender);
     console.log("Z-Score: " + zScore); 
-    if(age > 240) {
-        age = 240;
-        console.log("Effective Age: " + age);
-    }
 
     // Initialize variables
     var metsScore;

@@ -13,14 +13,17 @@ function calculateZscore(age, gender, bmi) {
 
     // Log data to console for reference
     console.log("// Calculate Z-Score Function");
-    console.log("Age: " + age + " (Months)");
     console.log("Gender: " + gender);
     console.log("BMI: " + bmi); 
+    console.log("Age: " + age + " (Months)");
     if(age > 240) {
         age = 240;
         console.log("Effective Age: " + age);
+    } else if (age < 24) {
+        age = 24;
+        console.log("Effective Age: " + age);
     }
-    
+    console.log("Rendered Age: " + (age*1+0.5) + " (Months)");
 
     /*
      * Loop Through Data, Perform Calculation
@@ -35,7 +38,7 @@ function calculateZscore(age, gender, bmi) {
                 
                 // Data From CSV Is In Half Months
                 // Adding Half Month To Age To Match
-                if(popData[i][1] == age + 0.5) {
+                if(popData[i][1] == age*1+0.5) {
                     
                     // Stores Filtered Row Data
                     var x = popData[i];
