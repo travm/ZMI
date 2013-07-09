@@ -33,9 +33,12 @@ $(function(){
             var zScore = calculateZscore(age, gender, bmi);
 
             // Store MetS Score for Output
-            var metsScore =  calculateMets(gender, race, zScore, tri, hdl, sbp, glu);
+            var metsScore = calculateMets(gender, race, zScore, tri, hdl, sbp, glu);
 
-            result.text("MetS Score: " + metsScore);
+            // Calculate MetS Z-Score Percentage
+            var metsPercentile = ((1/(Math.sqrt(2*3.14)))*(Math.pow(2.718281828, -(Math.pow(0.5181125828466573, 2)/2)))*2);
+
+            result.text("MetS Score: " + metsScore + "MetS Percent: " + metsPercentile);
 
         }
     });
