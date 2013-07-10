@@ -24,7 +24,7 @@ form {padding:40px; background:#fff; border-radius:8px; box-shadow:0 0 30px #234
 
 #calculateWrap {margin:0;}
 #calculateWrap button {font-size:1em; padding:2px 6px; float:left;}
-#result {text-align:center; margin:4% 0 0 0; display:none;}
+#result {text-align:center; margin:1.5em 0 0 0; display:none;}
 #result table {width:100%;}
 #result table td {padding:10px;}
 .resultNum {font-size:2em;}
