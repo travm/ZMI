@@ -30,15 +30,23 @@
                 <div id="heightWrap" class="wrap">
                     <label for="height">How tall are you?</label><br/>
                     <input type="text" data-val="true" data-val-number="Your height must be a number." data-val-required="Height is required." id="height" name="height" placeholder="Your height..." />
-                    <input type="radio" name="heightUnit" checked="true" value="m">m</input>
+                    <input type="radio" name="heightUnit" checked="true" value="cm">cm</input>
                     <input type="radio" name="heightUnit" value="in">in</input><br />
                     <span class="field-validation-valid" data-valmsg-for="height" data-valmsg-replace="true"></span>
                 </div>
 
-                <div id="ageWrap" class="wrap">
-                    <label for="age">How old are you (in months)?</label><br />
-                    <input type="text" data-val="true" data-val-number="Your age must be a number." data-val-required="Age is required." id="age" name="age" placeholder="Your age (months)..." /><br />
-                    <span class="field-validation-valid" data-valmsg-for="age" data-valmsg-replace="true"></span>
+                <div class="wrap">
+                    <div id="birthWrap">
+                        <label for="birthdate">Birthdate</label><br />
+                        <input type="text" data-val="true" data-val-date="Please enter a valid date. (e.g. 5/25/1977)" data-val-required="Birthdate is required." id="birthdate" name="birthdate" placeholder="e.g. 5/25/1977" /><br />
+                        <span class="field-validation-valid" data-valmsg-for="birthdate" data-valmsg-replace="true"></span>
+                    </div>
+
+                    <div id="appointmentWrap">
+                        <label for="appointment">Appointment Date</label><br />
+                        <input type="text" data-val="true" data-val-date="Please enter a valid date. (e.g. 5/25/1977)" data-val-required="Appointment date is required." id="appointment" name="appointment" placeholder="e.g. 5/25/1977" /><br />
+                        <span class="field-validation-valid" data-valmsg-for="appointment" data-valmsg-replace="true"></span>
+                    </div>
                 </div>
 
                 <div id="genderWrap" class="wrap">
@@ -114,6 +122,7 @@
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript" src="lib/jquery.validate.js"></script>
     <script type="text/javascript" src="lib/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript" src="lib/moment.min.js"></script>
     <script type="text/javascript" src='js/main.js'></script>
     <script type="text/javascript" src='js/bmi.js'></script>
     <script type="text/javascript" src='js/process-csv.js'></script>

@@ -1,6 +1,6 @@
 /* GLOBALS */
 body {font:400 16px "Raleway", Sans-Serif; padding:10px; background:#3360E8;}
-input[type="text"] {width:auto; padding:5px; border:1px solid #D5DAE8;}
+input[type="text"] {width:auto; padding:0.5em; border:1px solid #D5DAE8;}
 input[type="radio"] {display:inline;}
 
 /* PAGE LAYOUT */
@@ -14,7 +14,8 @@ form {padding:40px; background:#fff; border-radius:8px; box-shadow:0 0 30px #234
 /* FORM LAYOUT */
 #weightWrap {}
 #heightWrap {}
-#ageWrap {}
+#birthWrap {width:48%; margin:0 4% 0 0; float:left;}
+#appointmentWrap {width:48%;float:right;}
 #genderWrap {}
 #raceWrap {}
 #triglycerideWrap {width:48%; margin:0 4% 0 0; float:left;}
