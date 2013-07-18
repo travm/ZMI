@@ -33,7 +33,7 @@ $(function(){
             var bmiRounded = Math.round(bmi*100)/100;
 
             // Store BMI Z-Score for MetS Calculation
-            var bmiZScore = calculateZscore(age, gender, bmi);
+            var bmiZScore = calculateBMIZScore(age, gender, bmi);
             var bmiZScoreRounded = Math.round(bmiZScore*100)/100;
 
             // Store BMI Z-Score Percentile
@@ -41,7 +41,7 @@ $(function(){
             var bmiPercentileRounded = Math.round(bmiPercentile*100)/100;
 
             // Store MetS Score for Output
-            var metsZScore = calculateMets(gender, race, bmiZScore, tri, hdl, sbp, glu);
+            var metsZScore = calculateMetsZScore(gender, race, bmiZScore, tri, hdl, sbp, glu);
             var metsZScoreRounded = Math.round(metsZScore*100)/100;
 
             // Calculate MetS Z-Score Percentage
