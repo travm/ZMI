@@ -11,7 +11,7 @@ $(function(){
         e.preventDefault();
 
         var $form = $('form');
-        //if($form.valid()) {
+        if($form.valid()) {
     
             // Store Form Elements
             var weight = $('#weight').val();
@@ -56,7 +56,7 @@ $(function(){
                 '<table><tr><td>MetS Z-Score<br /><span class="resultNum"> ' + metsZScoreRounded + '</span></td><td>MetS Percentile<br /><span class="resultNum">' + metsPercentileRounded + "%</span></td></tr></table>"
             );
 
-        //}
+        }
     });
 
 });
