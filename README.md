@@ -1,4 +1,4 @@
 ZMI
 ===
 
-A JavaScript BMI Z-Score Calculator
+A JavaScript BMI/MetS Z-Score Calculator

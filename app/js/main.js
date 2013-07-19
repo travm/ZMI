@@ -38,7 +38,7 @@ $(function(){
 
             // Store BMI Z-Score Percentile
             var bmiPercentile = 100*(1/(1+Math.exp(-0.07056 * Math.pow(bmiZScore, 3) - (1.5976*bmiZScore))));
-            var bmiPercentileRounded = Math.round(bmiPercentile*100)/100;
+            var bmiPercentileRounded = Math.round(bmiPercentile*10)/10;
 
             // Store MetS Score for Output
             var metsZScore = calculateMetsZScore(gender, race, bmiZScore, tri, hdl, sbp, glu);
@@ -46,14 +46,14 @@ $(function(){
 
             // Calculate MetS Z-Score Percentage
             var metsPercentile = 100*(1/(1+Math.exp(-0.07056 * Math.pow(metsZScore, 3) - (1.5976*metsZScore))));
-            var metsPercentileRounded = Math.round(metsPercentile*100)/100;
+            var metsPercentileRounded = Math.round(metsPercentile*10)/10;
             console.log("MetS Percentile: " + metsPercentile);
             console.log("MetS Percentile Rounded: " + metsPercentileRounded);
 
 
             result.show().html(
-                '<table><tr><td>Your BMI<br /><span class="resultNum">' + bmiRounded + '</span></td><td>Your Z-Score<br /><span class="resultNum">' + bmiZScoreRounded + '</span></td><td>MetS Z-Score<br /><span class="resultNum"> ' + metsZScoreRounded + '</span></td></tr></table>' +
-                '<table><tr><td>BMI Percentile<br /><span class="resultNum"> ' + bmiPercentileRounded + '%</span></td><td>MetS Percentile<br /><span class="resultNum">' + metsPercentileRounded + "%</span></td></tr></table>"
+                '<table><tr><td>BMI<br /><span class="resultNum">' + bmiRounded + '</span></td><td>BMI Z-Score<br /><span class="resultNum">' + bmiZScoreRounded + '</span></td><td>BMI Percentile<br /><span class="resultNum"> ' + bmiPercentileRounded + '%</span></td></tr></table>' +
+                '<table><tr><td>MetS Z-Score<br /><span class="resultNum"> ' + metsZScoreRounded + '</span></td><td>MetS Percentile<br /><span class="resultNum">' + metsPercentileRounded + "%</span></td></tr></table>"
             );
 
         //}
