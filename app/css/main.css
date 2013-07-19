@@ -1,30 +1,33 @@
 /* GLOBALS */
 body {font:400 16px "Raleway", Sans-Serif; padding:10px; background:#3360E8;}
-input[type="text"] {width:auto; padding:0.5em; border:1px solid #D5DAE8;}
+label {font-weight:500;}
+input[type="text"] {width:100%; margin:0.5em 0; padding:0.5em; border:1px solid #D5DAE8; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
 input[type="radio"] {display:inline;}
 
 /* PAGE LAYOUT */
-#container {width:500px; margin:0 auto; overflow:hidden;}
+#container {width:625px; margin:0 auto;}
 header {color:#fff; overflow:hidden;}
 #title {font-size:5em; font-weight:900; line-height:1; text-shadow:2px 2px 0px #2343A1; margin:0; float:left;}
-#subtitle {font-size:0.8em; text-shadow:2px 2px 0px #2343A1; padding:30px 0; float:right;} 
-form {padding:40px; background:#fff; border-radius:8px; box-shadow:0 0 30px #2343A1; overflow:hidden;}
-.wrap {background:#eee; margin:0 0 1.5em 0; padding:0.5em; border-radius:6px; overflow:hidden;}
+#subtitle {font-size:0.8em; text-shadow:2px 2px 0px #2343A1; padding:2em 0; float:right;} 
+#content {padding:40px; background:#fff; border-radius:8px; box-shadow:0 0 30px #2343A1; overflow:hidden;}
+
+.box {background:#eee; margin:0 0 1em 0; padding:1em; border-radius:6px; overflow:hidden;}
 
 /* FORM LAYOUT */
-#weightWrap {}
-#heightWrap {}
+#weightWrap {width:48%; margin:0 4% 0 0; float:left;}
+#heightWrap {width:48%; float:right;}
 #birthWrap {width:48%; margin:0 4% 0 0; float:left;}
 #appointmentWrap {width:48%;float:right;}
-#genderWrap {}
-#raceWrap {}
+#genderWrap {width:48%; margin:0 4% 0 0; float:left;}
+#raceWrap {width:48%; float:right;}
 #triglycerideWrap {width:48%; margin:0 4% 0 0; float:left;}
 #hdlWrap {width:48%; float:right;}
 #sbpWrap {width:48%; margin:0 4% 0 0; float:left;}
 #glucoseWrap {width:48%; float:right;}
-
-#calculateWrap {margin:0;}
-#calculateWrap button {font-size:1em; padding:2px 6px; float:left;}
+#calculateWrap {margin:0; text-align:center;}
+#calculateWrap button {color:#fff; font-size:1em; text-shadow:1px 1px 0px #000; margin:0 auto; padding:1em 2em; border:none; border-top:1px solid #71D471; border-bottom:1px solid #308B30; box-shadow:0px 0px 0px 1px #999; border-radius:3px; background-color:#4BB94B; background-image:-webkit-linear-gradient(top, #4BB94B, #43A943); display:block; overflow:hidden;}
+#calculateWrap button:hover {cursor:pointer;}
+#calculateWrap button:active {box-shadow:inset 0 0 10px 0 #333;}
 #result {text-align:center; margin:1.5em 0 0 0; display:none;}
 #result table {width:100%;}
 #result table td {padding:10px;}
@@ -40,3 +43,11 @@ form {padding:40px; background:#fff; border-radius:8px; box-shadow:0 0 30px #234
 .input-validation-error {font-size:0.8em; border:0px solid #f00; background:#fee;}
 .validation-summary-errors {font-weight:bold; color:#f00; display:block;}
 .validation-summary-valid {display:none;}
+
+@media screen and (max-width:625px) {
+    #container {width:100%;}
+    #title, #subtitle {text-align:center;float:none;}
+    #weightWrap, #heightWrap, #birthWrap, #appointmentWrap, #genderWrap, #raceWrap, #triglycerideWrap, #hdlWrap, #sbpWrap, #glucoseWrap {width:100%; float:none;}
+    #weightWrap, #birthWrap, #genderWrap, #triglycerideWrap, #sbpWrap {margin-bottom:1em;}
+    #result {font-size:0.7em;}
+}
