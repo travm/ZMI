@@ -5,11 +5,13 @@ function convertHeight(inches) {
 
 // Convert Pounds to Kilograms
 function convertWeight(pounds) {
+    "use strict";
     return pounds/2.20462262185;
 }
 
 // Find Unit of Measurement
 function findUnit(unit) {
+    "use strict";
     var output;           
     for (i=0; i<unit.length; i++) {
         if(unit[i].checked === true) {
@@ -21,6 +23,7 @@ function findUnit(unit) {
 
 // Calculate BMI after inputs have been converted
 function calculateBMI(weight, weightUnit, height, heightUnit) {
+    "use strict";
     
     // Log BMI data to the console for reference
     console.log("// BMI Data");
@@ -42,10 +45,10 @@ function calculateBMI(weight, weightUnit, height, heightUnit) {
     // If height measurement is in inches, do the math.
     if(heightUnit == 'in') {
         h = convertHeight(height);
-        console.log(h + "m");        
+        console.log(h + "cm");        
     } else {
         h = height;    
-    };
+    }
 
     // Store BMI Result
     var result = w/(h*h);
