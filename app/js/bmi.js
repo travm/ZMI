@@ -1,5 +1,6 @@
 // Convert Inches to Centimeters
 function convertHeight(inches) {
+    "use strict";
     return inches * 0.0254;
 }
 
@@ -12,8 +13,8 @@ function convertWeight(pounds) {
 // Find Unit of Measurement
 function findUnit(unit) {
     "use strict";
-    var output;           
-    for (i=0; i<unit.length; i++) {
+    var output;
+    for (var i=0; i<unit.length; i++) {
         if(unit[i].checked === true) {
             output =  unit[i].value;
         }
@@ -26,28 +27,28 @@ function calculateBMI(weight, weightUnit, height, heightUnit) {
     "use strict";
     
     // Log BMI data to the console for reference
-    console.log("// BMI Data");
-    console.log("Weight: " + weight + weightUnit);
-    console.log("Height: " + height + heightUnit);
+    //console.log("// BMI Data");
+    //console.log("Weight: " + weight + weightUnit);
+    //console.log("Height: " + height + heightUnit);
 
     // Initialize variables
     var w;
     var h;
     
     // If measurement is in pounds, do the math.
-    if(weightUnit == 'lbs') {
+    if(weightUnit == "lbs") {
         w = convertWeight(weight);
-        console.log(w + "kg");        
+        //console.log(w + "kg");        
     } else {
-        w = weight;    
+        w = weight;
     }
     
     // If height measurement is in inches, do the math.
-    if(heightUnit == 'in') {
+    if(heightUnit == "in") {
         h = convertHeight(height);
-        console.log(h + "cm");        
+        //console.log(h + "cm");        
     } else {
-        h = height;    
+        h = height;
     }
 
     // Store BMI Result
@@ -55,12 +56,11 @@ function calculateBMI(weight, weightUnit, height, heightUnit) {
 
     // Check Result For Errors
     if(isNaN(result)) {
-        console.log("Weight and height was not numerical.")
+        //console.log("Weight and height was not numerical.")
         return;
     } else {
         return result;
     }
-
 }
 
 
