@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ZMI - A JavaScript BMI Z-Score &amp; MetS Score Calculator</title>
+    <link rel="stylesheet" type="text/css" href="lib/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="app/css/main.css">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,500,900' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    
+    <article id="container">
+        
+        <header>
+            <h1 id="title">ZMI</h1>
+            <p id="subtitle">A JavaScript BMI/MetS Z-Score Calculator</p>
+        </header>
+        
+        <section>
+
+            <div id="content">
+                <form>
+
+                    <div class="box">
+                        <div id="weightWrap" class="wrap">
+                            <label for="weight">Child's Weight:</label><br />
+                            <input type="text" data-val="true" data-val-number="Child's weight must be a number." data-val-required="Weight is required." id="weight" name="weight" placeholder="Child's weight..." />
+                            <input type="radio" name="weightUnit" checked="true" value="kg">kg</input>
+                            <input type="radio" name="weightUnit" value="lbs">lbs</input><br />
+                            <span class="field-validation-valid" data-valmsg-for="weight" data-valmsg-replace="true"></span>
+                        </div>
+
+                        <div id="heightWrap" class="wrap">
+                            <label for="height">Child's Height:</label><br/>
+                            <input type="text" data-val="true" data-val-number="Child's height must be a number." data-val-required="Height is required." id="height" name="height" placeholder="Child's height..." />
+                            <input type="radio" name="heightUnit" checked="true" value="cm">cm</input>
+                            <input type="radio" name="heightUnit" value="in">in</input><br />
+                            <span class="field-validation-valid" data-valmsg-for="height" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <div id="birthWrap" class="wrap">
+                            <label for="birthdate">Birthdate:</label><br />
+                            <input type="text" data-val="true" data-val-date="Please enter a valid date. (e.g. 5/25/1977)" data-val-required="Birthdate is required." id="birthdate" name="birthdate" placeholder="e.g. 5/25/1977" /><br />
+                            <span class="field-validation-valid" data-valmsg-for="birthdate" data-valmsg-replace="true"></span>
+                        </div>
+
+                        <div id="appointmentWrap" class="wrap">
+                            <label for="appointment">Appointment Date:</label><br />
+                            <input type="text" data-val="true" data-val-date="Please enter a valid date. (e.g. 5/25/1977)" data-val-required="Appointment date is required." id="appointment" name="appointment" placeholder="e.g. 5/25/1977" /><br />
+                            <span class="field-validation-valid" data-valmsg-for="appointment" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <div id="genderWrap" class="wrap">
+                            <label for="gender">Child's Gender:</label><br />
+                            <input type="radio" name="gender" value="M" class="gender" checked>Male</input>
+                            <input type="radio" name="gender" value="F" class="gender">Female</input>
+                        </div>
+
+                        <div id="raceWrap" class="wrap">
+                            <label for="race">Child's Race/Ethnicity:</label><br/>
+                            <select name="race" id="race">
+                                <option value="white">Non-Hispanic White</option>
+                                <option value="black">Non-Hispanic Black</option>
+                                <option value="hispanic">Hispanic</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <div id="triglycerideWrap" class="wrap">
+                            <label for="triglyceride">Fasting Trigylceride (m/dL):</label><br/>
+                            <input type="text" data-val="true" data-val-number="Triglyceride count must be a number." data-val-required="Triglyceride count is required." name="triglyceride" id="triglyceride" placeholder="Your triglyceride count..."/><br />
+                            <span class="field-validation-valid" data-valmsg-for="triglyceride" data-valmsg-replace="true"></span>
+                        </div>
+
+                        <div id="hdlWrap" class="wrap">
+                            <label for="hdl">HDL (mg/dL):</label><br/>
+                            <input type="text" data-val="true" data-val-number="HDL count must be a number." data-val-required="HDL count is required." name="hdl" id="hdl" placeholder="HDL count..." /><br />
+                            <span class="field-validation-valid" data-valmsg-for="hdl" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <div id="sbpWrap" class="wrap">
+                            <label for="sbp">Systolic Blood Pressure (mmHg):</label><br/>
+                            <input type="text" data-val="true" data-val-number="SBP count must be a number." data-val-required="SBP count is required." name="sbp" id="sbp" placeholder="Systolic blood pressure count..." /><br />
+                            <span class="field-validation-valid" data-valmsg-for="sbp" data-valmsg-replace="true"></span>
+                        </div>
+
+                        <div id="glucoseWrap" class="wrap">
+                            <label for="glucose">Fasting Glucose (mg/dL):</label><br/>
+                            <input type="text" data-val="true" data-val-number="Glucose count must be a number." data-val-required="Glucose count is required." name="glucose" id="glucose" placeholder="Fasting glucose..." /><br />
+                            <span class="field-validation-valid" data-valmsg-for="glucose" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    
+                    <div id="calculateWrap">
+                        <button id="calculate">Calculate</button>
+                    </div>
+
+                    <div id="result" class="box">
+                        <table>
+                            <tr>
+                                <td>BMI<br /><span class="resultNum">19.54</span></td>
+                                <td>BMI Z-Score<br /><span class="resultNum">0.36</span></td>
+                                <td>BMI Percentile<br /><span class="resultNum">95.4%</span></td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td>MetS Z-Score<br /><span class="resultNum">123</span></td>
+                                <td>MetS Percentile<br /><span class="resultNum">123</span></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </form>
+            </div>
+
+        </section>
+        
+        <footer>
+            <div id="credits">Created by <a href="http://twitter.com/travismaynard">@travismaynard</a> for the WVU School of Public Health.</div>
+        </footer>
+    
+    </article>
+
+    <script type="text/javascript" src="lib/js/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="lib/js/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript" src="lib/js/moment.min.js"></script>
+    <script type="text/javascript" src='app/js/zmi.class.js'></script>
+</body>
+</html>
