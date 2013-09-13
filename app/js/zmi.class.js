@@ -20,6 +20,15 @@ $.fn.serializeObject = function()
     return o;
 };
 
+$(function(){
+    $('form').submit(function() {
+        $('#result').text(JSON.stringify($('form').serializeObject()));
+        return false;
+    });
+});
+
+//console.log(o);
+
 // Child Config
 var child = {
     
