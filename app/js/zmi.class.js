@@ -20,14 +20,23 @@ $.fn.serializeObject = function()
     return o;
 };
 
+// On Document Ready
 $(function(){
+
+    var zmi;
+
     $('form').submit(function() {
-        $('#result').text(JSON.stringify($('form').serializeObject()));
+        
+        var userData = JSON.stringify($('form').serializeObject());
+
+        zmi = new ZMI(userData);
+
+        console.log(userData);
+
+        //$('#result').text();
         return false;
     });
 });
-
-//console.log(o);
 
 // Child Config
 var child = {
@@ -39,7 +48,7 @@ var adult = {
 
 }
 
-function ZMI(config, input) {
+function ZMI(input) {
     "use strict";
 
     // Find Unit
