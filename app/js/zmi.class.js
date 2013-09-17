@@ -1,8 +1,4 @@
-// 1.)  Form creates a new object based on form type (Child/Adult)
-// 2.)  User constructs a new object from the ZMI constructor and
-//      passes in newly created JSON object (Child/Adult)
-
-// Serialize Form (jQuery Dependent)
+// SERIALIZE FORM (jQuery Dependent)
 $.fn.serializeObject = function()
 {
     var o = {};
@@ -20,49 +16,31 @@ $.fn.serializeObject = function()
     return o;
 };
 
-// On Document Ready
+// DOCUMENT READY
 $(function(){
 
     var zmi;
 
     $('form').submit(function() {
         
-        var userData = JSON.stringify($('form').serializeObject());
+        var userData = $('form').serializeObject();
 
         zmi = new ZMI(userData);
 
-        console.log(userData);
+        console.log(zmi.bmi());
 
         //$('#result').text();
         return false;
     });
 });
 
-// Child Config
-var child = {
-    
-}
 
-// Adult Config
-var adult = {
-
-}
-
+// ZMI CONSTRUCTOR
 function ZMI(input) {
     "use strict";
-
-    // Find Unit
-    this.findUnit = function(unit) {
-        "use strict";
-        var output;
-        for (var i=0; i<unit.length; i++) {
-            if(unit[i].checked === true) {
-                output =  unit[i].value;
-            }
-        }
-        return output;
-    }
     
+    //console.log(input);
+
     // Process CSV
     this.processCSV = function(allText) {
         var allTextLines = allText.split(/\r\n|\n/);
@@ -84,7 +62,7 @@ function ZMI(input) {
     }
 
     // BMI
-    this.bmi = function(weight, weightUnit, height, heightUnit) {
+    this.bmi = function() {
         "use strict";
 
         // Initialize variables
@@ -92,17 +70,17 @@ function ZMI(input) {
         var h;
         
         // If measurement is in pounds, do the math.
-        if(weightUnit == "lbs") {
-            w = weight/2.20462262185;       
+        if(input.weightUnit == "lbs") {
+            w = input.weight/2.20462262185;       
         } else {
-            w = weight;
+            w = input.weight;
         }
         
         // If height measurement is in inches, do the math.
-        if(heightUnit == "in") {
-            h = height * 0.0254;      
+        if(input.heightUnit == "in") {
+            h = input.height * 0.0254;      
         } else {
-            h = height;
+            h = input.height;
         }
 
         // Store BMI Result
@@ -118,7 +96,7 @@ function ZMI(input) {
 
     // BMI Z-Score
     this.bmiz = function (age, gender, bmi) {
-        // Pull & process CSV data file (.TXT)
+        // Pull & process CSV data file (.txt)
         var popData = "Oh no! Population data wasn't loaded properly.";
         $.ajax({
             type: "GET",
@@ -169,8 +147,6 @@ function ZMI(input) {
                         var one = bmi/x[3];
                         var two = Math.pow(one, x[2]) - 1;
                         var z = two / (x[2] * x[4]);
-                        console.log("BMIZ-Score: " + z);
-                        console.log("Rendered Results For Female Data.");
 
                         return z;
                     }
