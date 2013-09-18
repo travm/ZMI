@@ -39,7 +39,8 @@ $(function(){
 function ZMI(input) {
     "use strict";
     
-    //console.log(input);
+    // Reference to 'this' 
+    var self = this;
 
     // Process CSV
     this.processCSV = function(allText) {
@@ -95,15 +96,23 @@ function ZMI(input) {
     };
 
     // BMI Z-Score
-    this.bmiz = function (age, gender, bmi) {
+    this.bmiz = function () {
+
+        // Calculate Age
+        var birthdate = moment(input.birthdate);
+        var appointment = moment(input.appointment);
+        var age = appointment.diff(birthdate, 'months');
+
+        // Default Population Data
+        var popData = "Population data wasn't loaded properly.";
+        
         // Pull & process CSV data file (.txt)
-        var popData = "Oh no! Population data wasn't loaded properly.";
         $.ajax({
             type: "GET",
             url: "data/data.txt",
             dataType: "text",
             async:false,
-            success: function(data) { popData = this.processCSV(data); }
+            success: function(data) { popData = self.processCSV(data); }
         });
 
         /*
@@ -111,7 +120,7 @@ function ZMI(input) {
          * If L != 0 then use: Z = ((X/M)**L) - 1 / LS
          * If L = 0 then use: Z = ln(X/M)/S (Not currently needed.)
          */
-        if(gender == "M") {
+        if(input.gender == "M") {
             for(var i = 0; i < popData.length; i++) {        
                 if(popData[i][0] == 1) {
                     
@@ -123,7 +132,7 @@ function ZMI(input) {
                         var x = popData[i];
 
                         // Calculates Z-Score
-                        var one = bmi/x[3];
+                        var one = this.bmi()/x[3];
                         var two = Math.pow(one, x[2]) - 1;
                         var z = two / (x[2] * x[4]);
 
@@ -131,20 +140,19 @@ function ZMI(input) {
                     }
                 } 
             }
-        } else if(gender == "F") {
+        } else if(input.gender == "F") {
             for(var i = 0; i < popData.length; i++) {        
                 if(popData[i][0] == 2) {
                     
                     // Data From CSV Is In Half Months
                     // Adding Half Month To Age To Match
-                    if(popData[i][1] == age + 0.5) {
+                    if(popData[i][1] == age*1+0.5) {
                         
                         // Stores Filtered Row Data
                         var x = popData[i];
-                        console.log(x);
 
                         // Calculates Z-Score
-                        var one = bmi/x[3];
+                        var one = this.bmi()/x[3];
                         var two = Math.pow(one, x[2]) - 1;
                         var z = two / (x[2] * x[4]);
 
@@ -165,20 +173,20 @@ function ZMI(input) {
         var metsZScore, metsPercentage;
 
         // Determine gender and race and insert variables into the correct formula
-        if(gender == "M") {
+        if(input.gender == "M") {
 
-            if(race == "white") {
+            if(input.race == "white") {
                 // WHITE MALE
                 // -4.931+0.2804*B4-0.0257*B6+0.0189*B7+0.624*LN(B5)+0.014*B8
-                metsZScore = -4.931 + 0.2804 * bmiZScore - 0.0257 * hdl + 0.0189 * sbp + 0.624 * Math.log(tri) + 0.014 * glu;
+                metsZScore = -4.931 + 0.2804 * this.bmiz() - 0.0257 * input.hdl + 0.0189 * input.sbp + 0.624 * Math.log(input.triglyceride) + 0.014 * input.glucose;
             } else if (race == "black") {
                 // AFRICAN AMERICAN MALE
                 // -4.7544+0.2401*B4-0.0284*B6+0.0134*B7+0.6773*LN(B5)+0.0179*B8
-                metsZScore = -4.7544 + 0.2401 * bmiZScore - 0.0284 * hdl + 0.0134 * sbp + 0.6773 * Math.log(tri) + 0.0179 * glu;
+                metsZScore = -4.7544 + 0.2401 * this.bmiz() - 0.0284 * input.hdl + 0.0134 * input.sbp + 0.6773 * Math.log(input.triglyceride) + 0.0179 * input.glucose;
             } else {
                 // HISPANIC MALE
                 // -3.2971+0.293*B4-0.0315*B6+0.0109*B7+0.6137*LN(B5)+0.0095*B8
-                metsZScore = -3.2971 + 0.293 * bmiZScore - 0.0315 * hdl + 0.0109 * sbp + 0.6137 * Math.log(tri) + 0.0095 * glu;
+                metsZScore = -3.2971 + 0.293 * this.bmiz() - 0.0315 * input.hdl + 0.0109 * input.sbp + 0.6137 * Math.log(input.triglyceride) + 0.0095 * input.glucose;
             }
 
         } else if(gender == "F") {
@@ -186,15 +194,15 @@ function ZMI(input) {
             if(race == "white") {
                 // WHITE FEMALE
                 // -4.3757+0.4849*B4-0.0176*B6+0.0257*B7+0.3172*LN(B5)+0.0083*F8
-                metsZScore = -4.3757 + 0.4849 * bmiZScore - 0.0176 * hdl + 0.0257 * sbp + 0.3172 * Math.log(tri) + 0.0083 * glu;
+                metsZScore = -4.3757 + 0.4849 * this.bmiz() - 0.0176 * input.hdl + 0.0257 * input.sbp + 0.3172 * Math.log(input.triglyceride) + 0.0083 * input.glucose;
             } else if (race == "black") {
                 // AFRICAN AMERICAN FEMALE
                 // -3.7145+0.5136*B4-0.019*B6+0.0131*B7+0.4442*LN(B5)+0.0108*B8
-                metsZScore = -3.7145 + 0.5136 * bmiZScore - 0.019 * hdl + 0.0131 * sbp + 0.4442 * Math.log(tri) + 0.0108 * glu;
+                metsZScore = -3.7145 + 0.5136 * this.bmiz() - 0.019 * input.hdl + 0.0131 * input.sbp + 0.4442 * Math.log(input.triglyceride) + 0.0108 * input.glucose;
             } else {
                 // HISPANIC FEMALE
                 // -4.7637+0.352*B4-0.0263*B6+0.0152*B7+0.691*LN(B5)+0.0133*H8
-                metsZScore = -4.7637 + 0.352 * bmiZScore - 0.0263 * hdl + 0.0152 * sbp + 0.691 * Math.log(tri) + 0.0133 * glu;
+                metsZScore = -4.7637 + 0.352 * this.bmiz() - 0.0263 * input.hdl + 0.0152 * input.sbp + 0.691 * Math.log(input.triglyceride) + 0.0133 * input.glucose;
             }
         } else {
             var error = "Gender was not set.";
