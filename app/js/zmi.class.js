@@ -27,7 +27,7 @@ $(function(){
 
         zmi = new ZMI(userData);
 
-        console.log(zmi.bmiPercentile());
+        console.log(zmi.metsPercentile());
 
         //$('#result').text();
         return false;
@@ -91,7 +91,7 @@ function ZMI(input) {
         if(isNaN(result)) {
             return;
         } else {
-            return result;
+            return Math.round(result*100)/100;;
         }
     };
 
@@ -136,7 +136,8 @@ function ZMI(input) {
                         var two = Math.pow(one, x[2]) - 1;
                         var z = two / (x[2] * x[4]);
 
-                        return z;
+                        // Return Rounded Z-Score
+                        return Math.round(z*100)/100;;
                     }
                 } 
             }
@@ -156,7 +157,8 @@ function ZMI(input) {
                         var two = Math.pow(one, x[2]) - 1;
                         var z = two / (x[2] * x[4]);
 
-                        return z;
+                        // Return Rounded Z-Score
+                        return Math.round(z*100)/100;;
                     }
                 } 
             }
@@ -170,7 +172,7 @@ function ZMI(input) {
     this.bmiPercentile = function () {
         var z = this.bmiZScore();
         var p = 100*(1/(1+Math.exp(-0.07056 * Math.pow(z, 3) - (1.5976*z))));
-        return p;
+        return Math.round(p*10)/10;;
     };
 
     // MetS Z-Score
@@ -216,12 +218,14 @@ function ZMI(input) {
             return error;
         }
         
-        return z;
+        return Math.round(z*100)/100;;
     };
 
     //MetS Percentile
     this.metsPercentile = function () {
-        
+        var z = this.metsZScore();
+        var p = 100*(1/(1+Math.exp(-0.07056 * Math.pow(z, 3) - (1.5976*z))));
+        return Math.round(p*10)/10;
     };
 
 }
