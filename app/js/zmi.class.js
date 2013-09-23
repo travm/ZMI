@@ -1,6 +1,32 @@
+// Cross Browser Console.log()
+(function() {
+    "use strict";
+
+    var method;
+    var noop = function () {};
+    var methods = [
+        "assert", "clear", "count", "debug", "dir", "dirxml", "error",
+        "exception", "group", "groupCollapsed", "groupEnd", "info", "log",
+        "markTimeline", "profile", "profileEnd", "table", "time", "timeEnd",
+        "timeStamp", "trace", "warn"
+    ];
+    var length = methods.length;
+    var console = (window.console = window.console || {});
+
+    while (length--) {
+        method = methods[length];
+
+        // Only stub undefined methods.
+        if (!console[method]) {
+            console[method] = noop;
+        }
+    }
+}());
+
 // SERIALIZE FORM (jQuery Dependent)
 $.fn.serializeObject = function()
 {
+    "use strict";
     var o = {};
     var a = this.serializeArray();
     $.each(a, function() {
@@ -8,9 +34,9 @@ $.fn.serializeObject = function()
             if (!o[this.name].push) {
                 o[this.name] = [o[this.name]];
             }
-            o[this.name].push(this.value || '');
+            o[this.name].push(this.value || "");
         } else {
-            o[this.name] = this.value || '';
+            o[this.name] = this.value || "";
         }
     });
     return o;
@@ -19,15 +45,21 @@ $.fn.serializeObject = function()
 // DOCUMENT READY
 $(function(){
 
+    "use strict";
+
     var zmi;
 
-    $('form').submit(function() {
+    $("form").submit(function() {
         
-        var userData = $('form').serializeObject();
+        var userData = $("form").serializeObject();
 
         zmi = new ZMI(userData);
 
-        console.log(zmi.metsPercentile());
+        console.log("BMI: " + zmi.bmi());
+        console.log("BMI Z-Score: " + zmi.bmiZScore());
+        console.log("BMI Percentile: " + zmi.bmiPercentile());
+        console.log("MetS Z-Score: " + zmi.metsZScore());
+        console.log("MetS Percentile: " + zmi.metsPercentile());
 
         //$('#result').text();
         return false;
@@ -38,6 +70,8 @@ $(function(){
 // ZMI CONSTRUCTOR
 function ZMI(input) {
     "use strict";
+
+    console.log(input);
     
     // Reference to 'this' 
     var self = this;
@@ -45,11 +79,11 @@ function ZMI(input) {
     // Process CSV
     this.processCSV = function(allText) {
         var allTextLines = allText.split(/\r\n|\n/);
-        var headers = allTextLines[0].split(',');
+        var headers = allTextLines[0].split(",");
         var lines = [];
 
         for (var i=1; i<allTextLines.length; i++) {
-            var data = allTextLines[i].split(',');
+            var data = allTextLines[i].split(",");
             if (data.length == headers.length) {
 
                 var tarr = [];
@@ -60,11 +94,27 @@ function ZMI(input) {
             }
         }
         return lines;
-    }
+    };
+
+    // Process Data
+    this.processData = function() {
+        // Default Data Variable
+        var popData = "Population data wasn't loaded properly.";
+        
+        // Pull & Process CSV Data File (.txt)
+        $.ajax({
+            type: "GET",
+            url: "data/data.txt",
+            dataType: "text",
+            async:false,
+            success: function(data) { popData = self.processCSV(data); }
+        });
+
+        return popData;
+    };
 
     // BMI
     this.bmi = function() {
-        "use strict";
 
         // Initialize variables
         var w;
@@ -72,16 +122,16 @@ function ZMI(input) {
         
         // If measurement is in pounds, do the math.
         if(input.weightUnit == "lbs") {
-            w = input.weight/2.20462262185;       
+            w = input.weight/2.20462262185;
         } else {
             w = input.weight;
         }
         
         // If height measurement is in inches, do the math.
         if(input.heightUnit == "in") {
-            h = input.height * 0.0254;      
+            h = (input.height/0.39370) / 100;
         } else {
-            h = input.height;
+            h = input.height / 100;
         }
 
         // Store BMI Result
@@ -91,7 +141,8 @@ function ZMI(input) {
         if(isNaN(result)) {
             return;
         } else {
-            return Math.round(result*100)/100;;
+            //return Math.round(result*100)/100;
+            return result;
         }
     };
 
@@ -101,19 +152,8 @@ function ZMI(input) {
         // Calculate Age (Moment.JS Dependency)
         var birthdate = moment(input.birthdate);
         var appointment = moment(input.appointment);
-        var age = appointment.diff(birthdate, 'months');
-
-        // Default Population Data
-        var popData = "Population data wasn't loaded properly.";
-        
-        // Pull & process CSV data file (.txt)
-        $.ajax({
-            type: "GET",
-            url: "data/data.txt",
-            dataType: "text",
-            async:false,
-            success: function(data) { popData = self.processCSV(data); }
-        });
+        var age = appointment.diff(birthdate, "months");
+        var data = this.processData();    
 
         /*
          * Loop Through Data, Perform Calculation
@@ -121,15 +161,15 @@ function ZMI(input) {
          * If L = 0 then use: Z = ln(X/M)/S (Not currently needed.)
          */
         if(input.gender == "M") {
-            for(var i = 0; i < popData.length; i++) {        
-                if(popData[i][0] == 1) {
+            for(var i = 0; i < data.length; i++) {
+                if(data[i][0] == 1) {
                     
                     // Data From CSV Is In Half Months
                     // Adding Half Month To Age To Match
-                    if(popData[i][1] == age*1+0.5) {
+                    if(data[i][1] == age*1+0.5) {
                         
                         // Stores Filtered Row Data
-                        var x = popData[i];
+                        var x = data[i];
 
                         // Calculates Z-Score
                         var one = this.bmi()/x[3];
@@ -137,20 +177,21 @@ function ZMI(input) {
                         var z = two / (x[2] * x[4]);
 
                         // Return Rounded Z-Score
-                        return Math.round(z*100)/100;;
+                        //return Math.round(z*100)/100;
+                        return z;
                     }
-                } 
+                }
             }
         } else if(input.gender == "F") {
-            for(var i = 0; i < popData.length; i++) {        
-                if(popData[i][0] == 2) {
+            for(var i = 0; i < data.length; i++) {
+                if(data[i][0] == 2) {
                     
                     // Data From CSV Is In Half Months
                     // Adding Half Month To Age To Match
-                    if(popData[i][1] == age*1+0.5) {
+                    if(data[i][1] == age*1+0.5) {
                         
                         // Stores Filtered Row Data
-                        var x = popData[i];
+                        var x = data[i];
 
                         // Calculates Z-Score
                         var one = this.bmi()/x[3];
@@ -158,9 +199,9 @@ function ZMI(input) {
                         var z = two / (x[2] * x[4]);
 
                         // Return Rounded Z-Score
-                        return Math.round(z*100)/100;;
+                        return Math.round(z*100)/100;
                     }
-                } 
+                }
             }
         } else {
             var error = "You must choose a gender.";
@@ -172,14 +213,15 @@ function ZMI(input) {
     this.bmiPercentile = function () {
         var z = this.bmiZScore();
         var p = 100*(1/(1+Math.exp(-0.07056 * Math.pow(z, 3) - (1.5976*z))));
-        return Math.round(p*10)/10;;
+        //return Math.round(p*10)/10;
+        return p; 
     };
 
     // MetS Z-Score
     this.metsZScore = function () {
 
         // Initialize variables
-        var z, metsPercentage;
+        var z;
 
         // Determine gender and race and insert variables into the correct formula
         if(input.gender == "M") {
@@ -218,37 +260,16 @@ function ZMI(input) {
             return error;
         }
         
-        return Math.round(z*100)/100;;
+        //return Math.round(z*100)/100;
+        return z;
     };
 
     //MetS Percentile
     this.metsPercentile = function () {
         var z = this.metsZScore();
         var p = 100*(1/(1+Math.exp(-0.07056 * Math.pow(z, 3) - (1.5976*z))));
-        return Math.round(p*10)/10;
+        //return Math.round(p*10)/10;
+        return p;
     };
 
 }
-
-// Cross Browser Console.log()
-(function() {
-    var method;
-    var noop = function () {};
-    var methods = [
-        'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
-        'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
-        'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
-        'timeStamp', 'trace', 'warn'
-    ];
-    var length = methods.length;
-    var console = (window.console = window.console || {});
-
-    while (length--) {
-        method = methods[length];
-
-        // Only stub undefined methods.
-        if (!console[method]) {
-            console[method] = noop;
-        }
-    }
-}());

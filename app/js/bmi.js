@@ -1,7 +1,7 @@
 // Convert Inches to Centimeters
 function convertHeight(inches) {
     "use strict";
-    return inches * 0.0254;
+    return inches/0.39370;
 }
 
 // Convert Pounds to Kilograms
@@ -45,10 +45,10 @@ function calculateBMI(weight, weightUnit, height, heightUnit) {
     
     // If height measurement is in inches, do the math.
     if(heightUnit == "in") {
-        h = convertHeight(height);
+        h = convertHeight(height) / 100;
         //console.log(h + "cm");        
     } else {
-        h = height;
+        h = height / 100;
     }
 
     // Store BMI Result

@@ -47,13 +47,11 @@ $(function(){
             // Calculate MetS Z-Score Percentage
             var metsPercentile = 100*(1/(1+Math.exp(-0.07056 * Math.pow(metsZScore, 3) - (1.5976*metsZScore))));
             var metsPercentileRounded = Math.round(metsPercentile*10)/10;
-            console.log("MetS Percentile: " + metsPercentile);
-            console.log("MetS Percentile Rounded: " + metsPercentileRounded);
 
 
             result.show().html(
-                '<table><tr><td>BMI<br /><span class="resultNum">' + bmiRounded + '</span></td><td>BMI Z-Score<br /><span class="resultNum">' + bmiZScoreRounded + '</span></td><td>BMI Percentile<br /><span class="resultNum"> ' + bmiPercentileRounded + '%</span></td></tr></table>' +
-                '<table><tr><td>MetS Z-Score<br /><span class="resultNum"> ' + metsZScoreRounded + '</span></td><td>MetS Percentile<br /><span class="resultNum">' + metsPercentileRounded + "%</span></td></tr></table>"
+                '<table><tr><td>BMI<br /><span class="resultNum">' + bmiRounded + '</span></td><td>BMI Z-Score<br /><span class="resultNum">' + bmiZScoreRounded + '</span></td><td>BMI Percentile<br /><span class="resultNum"> ' + bmiPercentile + '%</span></td></tr></table>' +
+                '<table><tr><td>MetS Z-Score<br /><span class="resultNum"> ' + metsZScoreRounded + '</span></td><td>MetS Percentile<br /><span class="resultNum">' + metsPercentile + "%</span></td></tr></table>"
             );
 
         }
