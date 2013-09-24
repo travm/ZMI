@@ -27,6 +27,9 @@
                 <form>
 
                     <div class="box">
+                        <!-- Hidden Input For Form Type (Adult/Child) -->
+                        <input type="hidden" name="type" value="child" />
+
                         <div id="weightWrap" class="wrap">
                             <label for="weight">Child's Weight:</label><br />
                             <input type="text" data-val="true" data-val-number="Child's weight must be a number." data-val-required="Weight is required." id="weight" name="weight" placeholder="Child's weight..." />
@@ -61,8 +64,8 @@
                     <div class="box">
                         <div id="genderWrap" class="wrap">
                             <label for="gender">Child's Gender:</label><br />
-                            <input type="radio" name="gender" value="M" class="gender" checked>Male</input>
-                            <input type="radio" name="gender" value="F" class="gender">Female</input>
+                            <input type="radio" name="gender" value="m" class="gender" checked>Male</input>
+                            <input type="radio" name="gender" value="f" class="gender">Female</input>
                         </div>
 
                         <div id="raceWrap" class="wrap">

@@ -149,18 +149,23 @@ function ZMI(input) {
     // BMI Z-Score
     this.bmiZScore = function () {
 
+        // Initialize Variables
+        var x, one, two, z;
+
         // Calculate Age (Moment.JS Dependency)
         var birthdate = moment(input.birthdate);
         var appointment = moment(input.appointment);
         var age = appointment.diff(birthdate, "months");
-        var data = this.processData();    
+        
+        // Pull In Data
+        var data = this.processData();
 
         /*
          * Loop Through Data, Perform Calculation
          * If L != 0 then use: Z = ((X/M)**L) - 1 / LS
          * If L = 0 then use: Z = ln(X/M)/S (Not currently needed.)
          */
-        if(input.gender == "M") {
+        if(input.gender == "m") {
             for(var i = 0; i < data.length; i++) {
                 if(data[i][0] == 1) {
                     
@@ -169,12 +174,12 @@ function ZMI(input) {
                     if(data[i][1] == age*1+0.5) {
                         
                         // Stores Filtered Row Data
-                        var x = data[i];
+                        x = data[i];
 
                         // Calculates Z-Score
-                        var one = this.bmi()/x[3];
-                        var two = Math.pow(one, x[2]) - 1;
-                        var z = two / (x[2] * x[4]);
+                        one = this.bmi()/x[3];
+                        two = Math.pow(one, x[2]) - 1;
+                        z = two / (x[2] * x[4]);
 
                         // Return Rounded Z-Score
                         //return Math.round(z*100)/100;
@@ -182,7 +187,7 @@ function ZMI(input) {
                     }
                 }
             }
-        } else if(input.gender == "F") {
+        } else if(input.gender == "f") {
             for(var i = 0; i < data.length; i++) {
                 if(data[i][0] == 2) {
                     
@@ -191,21 +196,21 @@ function ZMI(input) {
                     if(data[i][1] == age*1+0.5) {
                         
                         // Stores Filtered Row Data
-                        var x = data[i];
+                        x = data[i];
 
                         // Calculates Z-Score
-                        var one = this.bmi()/x[3];
-                        var two = Math.pow(one, x[2]) - 1;
-                        var z = two / (x[2] * x[4]);
+                        one = this.bmi()/x[3];
+                        two = Math.pow(one, x[2]) - 1;
+                        z = two / (x[2] * x[4]);
 
                         // Return Rounded Z-Score
-                        return Math.round(z*100)/100;
+                        //return Math.round(z*100)/100;
+                        return z;
                     }
                 }
             }
         } else {
-            var error = "You must choose a gender.";
-            return error;
+            z = "You must choose a gender.";
         }
     };
 
@@ -214,54 +219,97 @@ function ZMI(input) {
         var z = this.bmiZScore();
         var p = 100*(1/(1+Math.exp(-0.07056 * Math.pow(z, 3) - (1.5976*z))));
         //return Math.round(p*10)/10;
-        return p; 
+        return p;
     };
 
     // MetS Z-Score
     this.metsZScore = function () {
-
         // Initialize variables
         var z;
 
-        // Determine gender and race and insert variables into the correct formula
-        if(input.gender == "M") {
+        if(input.type == "child"){
 
-            if(input.race == "white") {
-                // WHITE MALE
-                // -4.931+0.2804*B4-0.0257*B6+0.0189*B7+0.624*LN(B5)+0.014*B8
-                z = -4.931 + 0.2804 * this.bmiZScore() - 0.0257 * input.hdl + 0.0189 * input.sbp + 0.624 * Math.log(input.triglyceride) + 0.014 * input.glucose;
-            } else if (input.race == "black") {
-                // AFRICAN AMERICAN MALE
-                // -4.7544+0.2401*B4-0.0284*B6+0.0134*B7+0.6773*LN(B5)+0.0179*B8
-                z = -4.7544 + 0.2401 * this.bmiZScore() - 0.0284 * input.hdl + 0.0134 * input.sbp + 0.6773 * Math.log(input.triglyceride) + 0.0179 * input.glucose;
+            // Determine gender and race and insert variables into the correct formula
+            if(input.gender == "m") {
+
+                if(input.race == "white") {
+                    // WHITE MALE
+                    // -4.931+0.2804*B4-0.0257*B6+0.0189*B7+0.624*LN(B5)+0.014*B8
+                    z = -4.931 + 0.2804 * this.bmiZScore() - 0.0257 * input.hdl + 0.0189 * input.sbp + 0.624 * Math.log(input.triglyceride) + 0.014 * input.glucose;
+                } else if (input.race == "black") {
+                    // AFRICAN AMERICAN MALE
+                    // -4.7544+0.2401*B4-0.0284*B6+0.0134*B7+0.6773*LN(B5)+0.0179*B8
+                    z = -4.7544 + 0.2401 * this.bmiZScore() - 0.0284 * input.hdl + 0.0134 * input.sbp + 0.6773 * Math.log(input.triglyceride) + 0.0179 * input.glucose;
+                } else {
+                    // HISPANIC MALE
+                    // -3.2971+0.293*B4-0.0315*B6+0.0109*B7+0.6137*LN(B5)+0.0095*B8
+                    z = -3.2971 + 0.293 * this.bmiZScore() - 0.0315 * input.hdl + 0.0109 * input.sbp + 0.6137 * Math.log(input.triglyceride) + 0.0095 * input.glucose;
+                }
+
+            } else if(input.gender == "f") {
+
+                if(input.race == "white") {
+                    // WHITE FEMALE
+                    // -4.3757+0.4849*B4-0.0176*B6+0.0257*B7+0.3172*LN(B5)+0.0083*F8
+                    z = -4.3757 + 0.4849 * this.bmiZScore() - 0.0176 * input.hdl + 0.0257 * input.sbp + 0.3172 * Math.log(input.triglyceride) + 0.0083 * input.glucose;
+                } else if (input.race == "black") {
+                    // AFRICAN AMERICAN FEMALE
+                    // -3.7145+0.5136*B4-0.019*B6+0.0131*B7+0.4442*LN(B5)+0.0108*B8
+                    z = -3.7145 + 0.5136 * this.bmiZScore() - 0.019 * input.hdl + 0.0131 * input.sbp + 0.4442 * Math.log(input.triglyceride) + 0.0108 * input.glucose;
+                } else {
+                    // HISPANIC FEMALE
+                    // -4.7637+0.352*B4-0.0263*B6+0.0152*B7+0.691*LN(B5)+0.0133*H8
+                    z = -4.7637 + 0.352 * this.bmiZScore() - 0.0263 * input.hdl + 0.0152 * input.sbp + 0.691 * Math.log(input.triglyceride) + 0.0133 * input.glucose;
+                }
             } else {
-                // HISPANIC MALE
-                // -3.2971+0.293*B4-0.0315*B6+0.0109*B7+0.6137*LN(B5)+0.0095*B8
-                z = -3.2971 + 0.293 * this.bmiZScore() - 0.0315 * input.hdl + 0.0109 * input.sbp + 0.6137 * Math.log(input.triglyceride) + 0.0095 * input.glucose;
+                z = "Gender was not set.";
             }
+            
+            //return Math.round(z*100)/100;
+            return z;
 
-        } else if(input.gender == "F") {
-
-            if(input.race == "white") {
-                // WHITE FEMALE
-                // -4.3757+0.4849*B4-0.0176*B6+0.0257*B7+0.3172*LN(B5)+0.0083*F8
-                z = -4.3757 + 0.4849 * this.bmiZScore() - 0.0176 * input.hdl + 0.0257 * input.sbp + 0.3172 * Math.log(input.triglyceride) + 0.0083 * input.glucose;
-            } else if (input.race == "black") {
-                // AFRICAN AMERICAN FEMALE
-                // -3.7145+0.5136*B4-0.019*B6+0.0131*B7+0.4442*LN(B5)+0.0108*B8
-                z = -3.7145 + 0.5136 * this.bmiZScore() - 0.019 * input.hdl + 0.0131 * input.sbp + 0.4442 * Math.log(input.triglyceride) + 0.0108 * input.glucose;
-            } else {
-                // HISPANIC FEMALE
-                // -4.7637+0.352*B4-0.0263*B6+0.0152*B7+0.691*LN(B5)+0.0133*H8
-                z = -4.7637 + 0.352 * this.bmiZScore() - 0.0263 * input.hdl + 0.0152 * input.sbp + 0.691 * Math.log(input.triglyceride) + 0.0133 * input.glucose;
-            }
         } else {
-            var error = "Gender was not set.";
-            return error;
+
+            // Determine gender and race and insert variables into the correct formula
+            if(input.gender == "m") {
+
+                if(input.race == "white") {
+                    // WHITE MALE
+                    // -4.931+0.2804*B4-0.0257*B6+0.0189*B7+0.624*LN(B5)+0.014*B8
+                    z = -5.4559 + 0.0125 * input.waist - 0.0251 * input.hdl + 0.0047 * input.sbp + 0.8244 * Math.log(input.triglyceride) + 0.0106 * input.glucose;
+                } else if (input.race == "black") {
+                    // AFRICAN AMERICAN MALE
+                    // -4.7544+0.2401*B4-0.0284*B6+0.0134*B7+0.6773*LN(B5)+0.0179*B8
+                    z = -6.3767 + 0.0232 * input.waist - 0.0175 * input.hdl + 0.0040 * input.sbp + 0.5400 * Math.log(input.triglyceride) + 0.0203 * input.glucose;
+                } else {
+                    // HISPANIC MALE
+                    // -3.2971+0.293*B4-0.0315*B6+0.0109*B7+0.6137*LN(B5)+0.0095*B8
+                    z = -5.5541 + 0.0135 * input.waist - 0.0278 * input.hdl + 0.0054 * input.sbp + 0.8340 * Math.log(input.triglyceride) + 0.0105 * input.glucose;
+                }
+
+            } else if(input.gender == "f") {
+
+                if(input.race == "white") {
+                    // WHITE FEMALE
+                    // -4.3757+0.4849*B4-0.0176*B6+0.0257*B7+0.3172*LN(B5)+0.0083*F8
+                    z = -7.2591 + 0.0254 * input.waist - 0.0120 * input.hdl + 0.0075 * input.sbp + 0.5800 * Math.log(input.triglyceride) + 0.0203 * input.glucose;
+                } else if (input.race == "black") {
+                    // AFRICAN AMERICAN FEMALE
+                    // -3.7145+0.5136*B4-0.019*B6+0.0131*B7+0.4442*LN(B5)+0.0108*B8
+                    z = -7.1913 + 0.0304 * this.bmiZScore() - 0.0095 * input.hdl + 0.0054 * input.sbp + 0.4455 * Math.log(input.triglyceride) + 0.0225 * input.glucose;
+                } else {
+                    // HISPANIC FEMALE
+                    // -4.7637+0.352*B4-0.0263*B6+0.0152*B7+0.691*LN(B5)+0.0133*H8
+                    z = -7.7641 + 0.0162 * this.bmiZScore() - 0.0157 * input.hdl + 0.0084 * input.sbp + 0.8872 * Math.log(input.triglyceride) + 0.0206 * input.glucose;
+                }
+            } else {
+                z = "Gender was not set.";
+            }
+            
+            //return Math.round(z*100)/100;
+            return z;
         }
-        
-        //return Math.round(z*100)/100;
-        return z;
+    
     };
 
     //MetS Percentile
