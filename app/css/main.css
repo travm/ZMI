@@ -14,6 +14,7 @@ header {color:#fff; overflow:hidden;}
 .box {background:#eee; margin:0 0 1em 0; padding:1em; border-radius:6px; overflow:hidden;}
 
 /* FORM LAYOUT */
+#waistWrap {}
 #weightWrap {width:48%; margin:0 4% 0 0; float:left;}
 #heightWrap {width:48%; float:right;}
 #birthWrap {width:48%; margin:0 4% 0 0; float:left;}

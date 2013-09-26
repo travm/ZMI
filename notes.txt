@@ -8,9 +8,29 @@ L: -1.83665586
 M: 22.45257182
 S: 0.132484631
 
-
 0.29242402316825142043659980812292 / -0.24332867388608766 
 = -1.2017655728693419377840651139867
+
+
+// EXAMPLE OBJECT
+{
+    appointment: "02/28/1999"
+    birthdate: "02/28/1987"
+    gender: "M"
+    glucose: "90"
+    hdl: "50"
+    height: "71"
+    heightUnit: "in"
+    race: "white"
+    sbp: "110"
+    triglyceride: "75"
+    weight: "140"
+    weightUnit: "lbs"
+}
+
+// ROUNDING
+Math.round(metsZScore*100)/100; (Two Decimal Places)
+Math.round(metsPercentile*10)/10; (One Decimal Place)
 
 
 // JQUERY VALIDATE EXAMPLES
