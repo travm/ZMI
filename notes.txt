@@ -32,6 +32,20 @@ S: 0.132484631
 Math.round(metsZScore*100)/100; (Two Decimal Places)
 Math.round(metsPercentile*10)/10; (One Decimal Place)
 
+// RESULT TABLE EXAMPLE
+<table>
+    <tr>
+        <td>BMI<br /><span class="resultNum">19.54</span></td>
+        <td>BMI Z-Score<br /><span class="resultNum">0.36</span></td>
+        <td>BMI Percentile<br /><span class="resultNum">95.4%</span></td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td>MetS Z-Score<br /><span class="resultNum">123</span></td>
+        <td>MetS Percentile<br /><span class="resultNum">123</span></td>
+    </tr>
+</table>
 
 // JQUERY VALIDATE EXAMPLES
 Simple Number Validation

@@ -6,7 +6,7 @@ A JavaScript BMI/MetS Z-Score Calculator
 
 ## Getting Started
 
-Simply include zmi.js in your project and include the following form elements in your page.
+Simply include zmi.js in your project and include the corresponding form elements in your page based on whether you are calculating data for a child or an adult.
 
 
 ## Dependencies
@@ -29,21 +29,21 @@ To calculate the children data all of the following fields must exist in your fo
 
     <input name="[Element Name Here]" />
 
-type
-waist
-waistUnit
-weight
-weightUnit
-height
-heightUnit
-birthdate
-appointment
-gender
-race
-triglyceride
-hdl
-sbp
-glucose
+- type
+- waist
+- waistUnit
+- weight
+- weightUnit
+- height
+- heightUnit
+- birthdate
+- appointment
+- gender
+- race
+- triglyceride
+- hdl
+- sbp
+- glucose
 
 
 ## Adult API
@@ -57,21 +57,21 @@ For Adults ZMI will calculate:
 
     <input name="[Element Name Here]" />
 
-type
-waist
-waistUnit
-weight
-weightUnit
-height
-heightUnit
-gender
-race
-triglyceride
-hdl
-sbp
-glucose
+- type
+- waist
+- waistUnit
+- weight
+- weightUnit
+- height
+- heightUnit
+- gender
+- race
+- triglyceride
+- hdl
+- sbp
+- glucose
 
 
 ## Notice
 
-This calculator was created for a grant project based on the work of Matt Gurka and the WVU Health Sciences Center School of Medicine. All MetS Calculations are based on his work and may not apply to certain situations.
+This calculator was created for a grant project based on the work of Matt Gurka and the WVU Health Sciences Center School of Medicine. All MetS Calculations are based on his work and may not apply to all situations.
