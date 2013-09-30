@@ -33,6 +33,7 @@ header {color:#fff; overflow:hidden;}
 #result table {width:100%;}
 #result table td {padding:10px;}
 .resultNum {font-size:2em;}
+.adult {display:none;}
 
 /* FOOTER LAYOUT */
 #credits {color:#A0B2E8; text-align:center; margin:20px 0 40px 0;}

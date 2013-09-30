@@ -7,10 +7,6 @@
     <link rel="stylesheet" type="text/css" href="lib/css/reset.css">
     <link rel="stylesheet" type="text/css" href="app/css/main.css">
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,500,900' rel='stylesheet' type='text/css'>
-
-    <!-- Unit Testing -->
-    <link rel="stylesheet" type="text/css" href="lib/css/qunit-1.12.0.css">
-    <script src="lib/js/qunit-1.12.0.js"></script>
 </head>
 <body>
     
@@ -27,13 +23,19 @@
                 <form>
                     
                     <!-- Hidden Input For Form Type (Adult/Child) -->
-                    <input type="hidden" name="type" id="type" value="child" />
+                    <!-- <input type="hidden" name="type" id="type" value="child" /> -->
+
+                    <div class="box">
+                        <label for="type">Calculate Data For: </label>
+                        <input type="radio" name="type" class="type" id="childType" value="child" checked="true" />Child
+                        <input type="radio" name="type" class="type" id="adultType" value="adult" />Adult
+                    </div>
 
                     <div class="box adult">
                         <div id="waistWrap" class="wrap">
                             <label for="weight">Adult's Waistline:</label><br />
-                            <input type="text" data-val="true" data-val-number="Adult's waistline must be a number." data-val-required="Waistline is required." id="weight" name="waist" placeholder="Adult's waistline circumference..." />
-                            <input type="radio" name="waistUnit" checked="true" value="cm">cm</input>
+                            <input type="text" data-val="true" data-val-number="Waistline must be a number." data-val-required="Waistline is required." id="weight" name="waist" placeholder="Adult's waistline circumference..." />
+                            <input type="radio" name="waistUnit" value="cm" checked="true">cm</input>
                             <input type="radio" name="waistUnit" value="in">in</input><br />
                             <span class="field-validation-valid" data-valmsg-for="waist" data-valmsg-replace="true"></span>
                         </div>
@@ -120,7 +122,7 @@
                         <button id="calculate">Calculate</button>
                     </div>
 
-                    <div id="result" class="box"></div>
+                    <div id="result" class="box">Please fill out the form above.</div>
 
                 </form>
             </div>
