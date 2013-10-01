@@ -204,7 +204,7 @@ function ZMI(input) {
         // Initialize variables
         var z, waist;
 
-        if(input.type == "child"){
+        if(input.type == "adolescent"){
 
             // Determine gender and race and insert variables into the correct formula
             if(input.gender == "m") {

@@ -17,12 +17,12 @@ $(function(){
     // Show/Hide Adult/Child Inputs
     $('#adultType').on("click", function(){
         $(".adult").show();
-        $(".child").hide();
+        $(".adolescent").hide();
     });
 
-    $('#childType').on("click", function(){
+    $('#adolescentType').on("click", function(){
         $(".adult").hide();
-        $(".child").show();
+        $(".adolescent").show();
     });
 
 
@@ -46,7 +46,7 @@ $(function(){
             zmi = new ZMI(userData);
 
             // Determine If Child Or Adult
-            if (userData.type == "child") {
+            if (userData.type == "adolescent") {
 
                 bmi = Math.round(zmi.bmi()*100)/100;
                 bmiZScore = Math.round(zmi.bmiZScore()*100)/100;

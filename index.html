@@ -27,8 +27,8 @@
 
                     <div class="box">
                         <label for="type">Calculate Data For: </label>
-                        <input type="radio" name="type" class="type" id="childType" value="child" checked="true" />Child
-                        <input type="radio" name="type" class="type" id="adultType" value="adult" />Adult
+                        <input type="radio" name="type" class="type" id="adolescentType" value="adolescent" checked="true" />Adolescent (12-19 Years)
+                        <input type="radio" name="type" class="type" id="adultType" value="adult" />Adult (20+ Years)
                     </div>
 
                     <div class="box adult">
@@ -41,25 +41,25 @@
                         </div>
                     </div>
 
-                    <div class="box child">
+                    <div class="box adolescent">
                         <div id="weightWrap" class="wrap">
-                            <label for="weight">Child's Weight:</label><br />
-                            <input type="text" data-val="true" data-val-number="Child's weight must be a number." data-val-required="Weight is required." id="weight" name="weight" placeholder="Child's weight..." />
+                            <label for="weight">Adolescent's Weight:</label><br />
+                            <input type="text" data-val="true" data-val-number="Adolescent's weight must be a number." data-val-required="Weight is required." id="weight" name="weight" placeholder="Adolescent's weight..." />
                             <input type="radio" name="weightUnit" checked="true" value="kg">kg</input>
                             <input type="radio" name="weightUnit" value="lbs">lbs</input><br />
                             <span class="field-validation-valid" data-valmsg-for="weight" data-valmsg-replace="true"></span>
                         </div>
 
                         <div id="heightWrap" class="wrap">
-                            <label for="height">Child's Height:</label><br/>
-                            <input type="text" data-val="true" data-val-number="Child's height must be a number." data-val-required="Height is required." id="height" name="height" placeholder="Child's height..." />
+                            <label for="height">Adolescent's Height:</label><br/>
+                            <input type="text" data-val="true" data-val-number="Adolescent's height must be a number." data-val-required="Height is required." id="height" name="height" placeholder="Adolescent's height..." />
                             <input type="radio" name="heightUnit" checked="true" value="cm">cm</input>
                             <input type="radio" name="heightUnit" value="in">in</input><br />
                             <span class="field-validation-valid" data-valmsg-for="height" data-valmsg-replace="true"></span>
                         </div>
                     </div>
 
-                    <div class="box child">
+                    <div class="box adolescent">
                         <div id="birthWrap" class="wrap">
                             <label for="birthdate">Birthdate:</label><br />
                             <input type="text" data-val="true" data-val-date="Please enter a valid date. (e.g. 5/25/1977)" data-val-required="Birthdate is required." id="birthdate" name="birthdate" placeholder="e.g. 5/25/1977" /><br />
@@ -141,6 +141,5 @@
     <script type="text/javascript" src="lib/js/moment.min.js"></script>
     <script type="text/javascript" src='app/js/zmi.js'></script>
     <script type="text/javascript" src='app/js/main.js'></script>
-    <script type="text/javascript" src='app/js/tests.js'></script>
 </body>
 </html>
