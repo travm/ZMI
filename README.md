@@ -25,9 +25,8 @@ For Children ZMI will calculate:
 - MetS Z-Score
 - MetS Percentile
 
-To calculate the children data all of the following fields must exist in your form.
 
-    <input name="[Element Name Here]" />
+Required Fields:
 
 - type
 - waist
@@ -55,7 +54,7 @@ For Adults ZMI will calculate:
 - MetS Z-Score
 - MetS Percentile
 
-    <input name="[Element Name Here]" />
+Required Fields:
 
 - type
 - waist
